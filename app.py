@@ -63,7 +63,7 @@ def login():
             error = 'Invalid password'
         else:
             session['logged_in'] = True
-            flash('You were logged in')
+            flash('You were logged in.')
             return redirect(url_for('index'))
     return render_template('login.html', error=error)
 
@@ -72,7 +72,7 @@ def login():
 def logout():
     """User logout/authentication/session management"""
     session.pop('logged_in', None)
-    flash('You were logged out')
+    flash('You were logged out.')
     return redirect(url_for('index'))
 
 
@@ -87,7 +87,7 @@ def add_entry():
         [request.form['title'], request.form['text']]
     )
     db.commit()
-    flash('New entry was successfully posted')
+    flash('New entry was successfully posted!')
     return redirect(url_for('index'))
 
 
