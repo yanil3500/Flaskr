@@ -86,6 +86,14 @@ class FlaskrTestCase(unittest.TestCase):
         self.assertEqual(data['status'], 1)
 
     def test_search(self):
+        """"Ensure that it is possible to search through the messages"""
+        rv = self.login(app.config['USERNAME'], app.config['PASSWORD'])
+        rv = self.app.post('/add', data=dict(
+            title='Joker',
+            text='by Joaquin Phoenix'),
+            follow_redirects=True)
+        rv = self.app.get('/search/?query=Joker')
+        self.assertIn(b'Joker', rv.data)
 
 
 if __name__ == "__main__":
